@@ -1,0 +1,26 @@
+version: '3.3'
+volumes:
+  data:
+services:
+  postgres:
+    image: postgres
+    restart: always
+    container_name: gobarber
+    working_dir: /application
+    volumes:
+      - ./data:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_USER=root
+      - POSTGRES_PASSWORD=root
+      - POSTGRES_DB=gobarber
+    ports:
+      - '5432:5432'
+  mongo:
+    image: mongo
+    restart: always
+    ports:
+      - '27017:27017'
+  redis:
+    image: redis:alpine
+    ports:
+      - '6379:6379'
